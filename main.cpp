@@ -2,15 +2,31 @@
 
 int main() {
 
-  std::string str = "\"hello\"  7";
+  //  std::string str = "[\"he\\llo\",7,85868,true,false]";
 
-  char* F = &str[0];
-  char* L = &str[str.length() - 1];
+  //  std::string str = "{\"Jacob\" : [\"hello\",7,8858,true,false]}";
 
-  value* val = parse(F,L);
+  std::string input;
+  std::string str;
 
-  val->print();
-  std::cout << '\n';
+  while (getline(std::cin,input))
+    str += input;
+
+  //std::cin >> str;
+
+  //std::cout << "Parsing: " << str << '\n';
+
+  //char* F = &str[0];
+  //char* L = &str[str.length() - 1];
+
+  std::string::iterator F = str.begin();
+  std::string::iterator L = str.end();
+
+  value* val = parse(-1,F,L);
+
+  val->print(false);
+  std::cout << "\nSuccess\n";
+  std::cout << "Weight: " << val->weight() << '\n';
 
   delete val;
 
