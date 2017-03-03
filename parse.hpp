@@ -11,8 +11,6 @@ value* parseNull(int,std::string::iterator&,std::string::iterator&);
 value* parseNumber(int,std::string::iterator&,std::string::iterator&);
 
 value* parse(int depth, std::string::iterator& F, std::string::iterator& L) {
-  //std::cout << "Parsing: " << *F << '\n';
-
   if (F != L) {
     switch(*F) {
     case '{': return parseObject(depth,F,L);
@@ -48,8 +46,6 @@ value* parseObject(int depth,std::string::iterator& F, std::string::iterator& L)
   object_value *obj = new object_value();
   obj->setDepth(depth);
 
-  //std::cout << "Starting new object\n";
-
   if (F != L)
       ++F;
 
@@ -72,15 +68,6 @@ value* parseObject(int depth,std::string::iterator& F, std::string::iterator& L)
     }
 
     if (key && value) {
-      
-      //std::cout << "Key: ";
-      //key->print();
-
-
-      //std::cout << " Value: ";
-      //value->print();
-      //std::cout << '\n';
-      
       std::string str = dynamic_cast<string_value*>(key)->getString();
       
       obj->push_back(std::make_pair(str, value));	
@@ -139,8 +126,6 @@ value* parseString(int depth, std::string::iterator& F, std::string::iterator& L
 
   if (*F == '"' && F != L)
     ++F;
-
-  //std::cout << "Current F: " << *F << '\n';
 
   return str;
 }
