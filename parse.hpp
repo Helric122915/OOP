@@ -19,6 +19,7 @@ value* parse(int depth, std::string::iterator& F, std::string::iterator& L) {
     case 't': return parseBool(depth,true,F,L);
     case 'f': return parseBool(depth,false,F,L);
     case 'n': return parseNull(depth,F,L);
+    case '-':
     case '0':
     case '1':
     case '2':
